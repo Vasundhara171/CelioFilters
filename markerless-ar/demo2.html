@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+<meta charset="utf-8">
+<title>StepOne AR</title>
+<meta name="description" content="3D Model (glTF) — StepOne">
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="../assets/js/ar.js"></script>
+<link rel="stylesheet"  href="../assets/css/style.css">
+
+</head>
+<body>
+  
+<a-scene vr-mode-ui="enabled: false"  arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;' >
+<a-assets>
+  <a-asset-item id="demo1"  src="../assets/model/cap.glb" ></a-asset-item>
+<a-asset-item id="demo2"  src="../assets/model/ironman.glb" ></a-asset-item>
+<a-asset-item id="demo3"  src="../assets/model/SpiderMan.glb" ></a-asset-item>
+<a-asset-item id="demo4"  src="../assets/model/thor.glb" ></a-asset-item>
+</a-assets>
+<a-light type="ambient"  position="0 5 0"></a-light>
+  <a-entity  position="0 0 -5"> 
+    <a-entity gltf-model="#demo1" position="1 0 0"  scale="1 1 1" shadow="receive: true" animation-mixer >
+    </a-entity>
+    <a-entity gltf-model="#demo2"  position="-2 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
+    </a-entity>
+
+    <a-entity gltf-model="#demo3"  position="0 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
+    </a-entity>
+    <a-entity gltf-model="#demo4"  position="2 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
+    </a-entity>
+
+      </a-entity>
+
+
+<a-entity position="0 0 4">
+</a-entity>
+</a-scene>
+<button id="btn" hidden> </button>
+<!--     <button id="retake"> 
+      ReTake
+    </button> -->
+     <h1 id="timer">7</h1>
+</body>
+</html>

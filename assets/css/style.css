@@ -1,0 +1,254 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+.mainpage{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    font-weight: bolder;
+}
+
+.main h1{
+    font-size: 70px;
+    line-height: 90px;
+    margin-bottom: 55px;
+}
+
+.main h1 span{
+    color: #ff0000;
+}
+
+.main h3{
+    color: #ff0000;
+    font-size: 35px;
+    line-height: 85px;
+    margin-bottom: 65px;
+}
+
+.main h4{
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 85px;
+    text-align: center;
+}
+
+.main p{
+    font-size: 30px;
+    color: #ff0000;
+}
+
+.main button{
+    margin-top: 40px;
+    font-size: 25px;
+    border: 5px solid black;
+    padding: 5px 17px;
+    font-weight: bolder;
+}
+
+.main button a{
+    color: black;
+}
+
+.main button:hover,.main button a:hover{
+    cursor: pointer;
+    text-decoration: none;
+    background-color: yellow;
+}
+    
+.web{
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+}
+
+.celio{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.celio h1{
+    font-size: 70px;
+    line-height: 30px;
+}
+
+.celio h1 span{
+    color: #ff0000;
+}
+
+.celio h3{
+    font-size: 35px;
+    line-height: 15px;
+    color: #ff0000;
+    margin-top: 65px;
+}
+.options{
+    margin-top: 30px;
+    width: 25%;
+  
+}
+
+
+li{
+    list-style: none;
+    /* border: 1px solid black; */
+    padding: 3px 15px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+
+}
+li a{
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    padding-left: 20px ;
+    padding-right: 20px;
+    
+}
+
+li:hover{
+   
+    text-decoration: none;
+}
+
+li a:hover{
+    text-decoration: none;
+    background-color: yellow;
+}    
+
+.web span img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+
+
+/* photo click */
+
+/* 
+#photoModeContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1050;
+    pointer-events: none;
+  }
+  
+  #flash {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    z-index: 10;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  
+  .flash #flash {
+    opacity: 1;
+    transition: 0s;
+    pointer-events: auto;
+  }
+  
+  #photoModeImage {
+    position: absolute;
+    max-width: 65%;
+    max-height: 65%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 0px 5px white;
+    border-radius: 2vmax;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  
+  .photo #photoModeImage {
+    opacity: 1;
+    transition: 0s;
+    pointer-events: auto;
+  }
+  
+  #shutterButton, #closeButton {
+    position: absolute;
+    width: 15vmin;
+    height: 15vmin;
+    background-color: white;
+    bottom: 2vmax;
+    border-radius: 7.5vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: auto;
+  }
+  
+  #shutterButton {
+    background-image: url('https://cdn.glitch.com/c2787147-29b9-4cd7-96dc-1246a9c456a3%2Fcamera%20(1).png?v=1625535512403');
+  }
+  
+  .photo #shutterButton {
+    display: none;
+  }
+  
+  #closeButton {
+    background-image: url('https://cdn.glitch.com/c2787147-29b9-4cd7-96dc-1246a9c456a3%2Fclose1.png?v=1625535531238');
+    display: none;
+  }
+  
+  .photo #closeButton {
+    display: block;
+  } */
+
+/*photo click*/
+
+/*     #btn{
+      display:none
+        position: absolute;
+    width: 15vmin;
+    height: 15vmin;
+    background-color: white;
+    bottom: 2vmax;
+    border-radius: 7.5vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: auto;
+     
+    }
+ */
+ #timer
+ {
+    position: absolute;
+   transform: translateX(-50%);
+   background-size: 50%;
+   bottom: 1vmax;
+   left: 50%;
+   color:red;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   font-size: 2000%;
+ }
