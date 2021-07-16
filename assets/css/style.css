@@ -95,9 +95,10 @@ body{
     margin-top: 65px;
 }
 .options{
-    margin-top: 30px;
-    width: 25%;
-  
+  margin-top: 50px;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }
 
 
@@ -116,6 +117,8 @@ li a{
     color: black;
     padding-left: 20px ;
     padding-right: 20px;
+    white-space: nowrap;
+    padding: 14px 40px
     
 }
 
@@ -252,3 +255,20 @@ li a:hover{
    margin-right: auto;
    font-size: 2000%;
  }
+    #retake{
+    display:none;
+    position: absolute;
+    width: 24vmin;
+    height: 8vmin;
+    background-color: yellow;
+    font-size: 25px;
+    bottom: 2vmax;
+    border-radius: 7.5vmin;
+    left: 80%;
+    transform: translateX(-50%);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    pointer-events: auto;
+     
+    }

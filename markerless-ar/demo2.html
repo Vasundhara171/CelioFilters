@@ -20,22 +20,25 @@
 <a-scene vr-mode-ui="enabled: false"  arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;' >
 <a-assets>
   <a-asset-item id="demo1"  src="../assets/model/cap.glb" ></a-asset-item>
-<a-asset-item id="demo2"  src="../assets/model/ironman.glb" ></a-asset-item>
+<a-asset-item id="demo4"  src="../assets/model/ironman.glb" ></a-asset-item>
 <a-asset-item id="demo3"  src="../assets/model/SpiderMan.glb" ></a-asset-item>
-<a-asset-item id="demo4"  src="../assets/model/thor.glb" ></a-asset-item>
+<a-asset-item id="demo2"  src="../assets/model/thor.glb" ></a-asset-item>
+<a-asset-item id="demo5"  src="../assets/model/Avengers2DLogo.glb" ></a-asset-item>
 </a-assets>
 <a-light type="ambient"  position="0 5 0"></a-light>
   <a-entity  position="0 0 -5"> 
-    <a-entity gltf-model="#demo1" position="1 0 0"  scale="1 1 1" shadow="receive: true" animation-mixer >
+    <a-entity gltf-model="#demo1" position="1.5 0 0"  scale="1.2 1.2 1.2" shadow="receive: true" animation-mixer >
     </a-entity>
-    <a-entity gltf-model="#demo2"  position="-2 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
-    </a-entity>
-
-    <a-entity gltf-model="#demo3"  position="0 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
-    </a-entity>
-    <a-entity gltf-model="#demo4"  position="2 0 0" rotation="0 0 0" scale="1 1 1" shadow="receive: true" animation-mixer >
+    <a-entity gltf-model="#demo2"  position="-3 1 -5" rotation="0 0 0" scale="2 2 2" shadow="receive: true" animation-mixer >
     </a-entity>
 
+    <a-entity gltf-model="#demo3"  position="1 0 0" rotation="0 0 0" scale="1.8 1.8 1.8" shadow="receive: true" animation-mixer >
+    </a-entity>
+    <a-entity gltf-model="#demo4"  position="2 1 -5" rotation="0 0 0" scale="2 2 2" shadow="receive: true" animation-mixer >
+    </a-entity>
+
+    <a-entity gltf-model="#demo5"  position="0 0.5 0" rotation="45 0 0" scale="2 2 2" shadow="receive: true" animation-mixer >
+    </a-entity>
       </a-entity>
 
 
@@ -43,9 +46,9 @@
 </a-entity>
 </a-scene>
 <button id="btn" hidden> </button>
-<!--     <button id="retake"> 
-      ReTake
-    </button> -->
-     <h1 id="timer">7</h1>
+<a href="../select.html">  <button id="retake"> 
+      Retake
+    </button></a>
+     <h1 id="timer">10</h1>
 </body>
 </html>

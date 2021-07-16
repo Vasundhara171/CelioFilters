@@ -55,22 +55,25 @@
 
 
 function ar() {
-    window.print()
+  window.print()
+}
+
+var i = 10;
+function timer(){
+  if (--i < 0) 
+  {
+    document.getElementsByTagName('h1')[0].style.display="none"
+    //document.getElementsByTagName('retake')[0].style.display="none"
+     return ar();
   }
 
-var i = 7;
-function timer(){
-    if (--i < 0) 
-    {
-      document.getElementsByTagName('h1')[0].style.display="none"
-      //document.getElementsByTagName('retake')[0].style.display="none"
-       return ar();
-    }
- 
-    setTimeout(function(){
-        document.getElementsByTagName('h1')[0].innerHTML = i;
-      timer()
-    }, 1000);
+  setTimeout(function(){
+      document.getElementsByTagName('h1')[0].innerHTML = i;
+    timer()
+  }, 1000);
 }
 timer()
-  
+
+setTimeout(()=>{
+document.getElementById('retake').style.display="block"
+},12000)
