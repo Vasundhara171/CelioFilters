@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" data-expires="2017-07-28" content="ArFv1ZeTwzkhjNE00uAE+XtiQB41fwqG/TqlFMLrepd9sforQSvQE/tgfIbUMYNuNre4QR1k4/z8xp2mV3dbhwwAAABeeyJvcmlnaW4iOiJodHRwczovL2FmcmFtZS5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjEiLCJleHBpcnkiOjE1MDEyMTcwMDIsImlzU3ViZG9tYWluIjp0cnVlfQ==">
+<meta charset="utf-8">
+<title>Video</title>
+<meta name="description" content="3D Model (glTF) — StepOne">
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<!--   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script> -->
+  
+<!-- <script src="../assets/js/ar.js"></script> -->
+ <link rel="stylesheet"  href="../assets/css/style.css">
+
+</head>
+<body>
+  
+<a-scene  vr-mode-ui="enabled: false"  arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;'  >
+<a-assets>
+    <video muted autoplay  id="mainVid" webkit-playsinline playsinline poster="" preload="auto" crossorigin="anonymous" loop="true">
+        <source type="video/mp4" src="../assets/model/video.mp4" />
+    </video>
+</a-assets>
+<a-entity  position="0 1 -10"> 
+<a-video vidhandler geometry="primitive: plane"  width="8" height="5" rotation="0 0 0"  material='transparent:true;repeat:1;alphaTest:0.5;shader:chromakey;src:#mainVid;color:0.1 0.9 0.2'></a-video>
+</a-entity>
+<a-entity position="0 0 4">
+</a-entity>
+</a-scene>
+
+<!-- <button id="btn" hidden> </button>
+  <a  href="../select.html"> <button id="retake"> 
+      ReTake
+    </button></a> 
+     <h1 id="timer">10</h1> -->
+
+</body>
+<script >
+      AFRAME.registerComponent('vidhandler', {
+    // ...
+    init: function () {
+      // Set up initial state and variables.
+      this.toggle = false;
+      this.vid = document.querySelector("#mainVid");
+      this.vid.pause();
+    },
+    tick: function () {
+      if (this.el.object3D.visible == true) {
+        if (!this.toggle) {
+          this.toggle = true;
+          this.vid.play();
+        }
+      } else {
+        this.toggle = false;
+        this.vid.pause();
+      }
+    }
+  });
+    AFRAME.registerShader('chromakey', {
+  schema: {
+    src: { type: 'map' },
+    color: { default: { x: "", y: "", z: "" }, type: 'vec3', is: 'uniform' },
+    transparent: { default: true, is: 'uniform' }
+  },
+  init: function (data) {
+    var videoTexture = new THREE.VideoTexture(data.src)
+    videoTexture.minFilter = THREE.LinearFilter
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        color: {
+          type: 'c',
+          value: data.color
+        },
+        texture: {
+          type: 't',
+          value: videoTexture
+        }
+      },
+      vertexShader: this.vertexShader,
+      fragmentShader: this.fragmentShader
+    })
+  },
+  update: function (data) {
+    this.material.color = data.color
+    this.material.src = data.src
+    this.material.transparent = data.transparent
+  },
+  vertexShader: [
+    'varying vec2 vUv;',
+    'void main(void)',
+    '{',
+    'vUv = uv;',
+    'vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );',
+    'gl_Position = projectionMatrix * mvPosition;',
+    '}'
+  ].join('\n'),
+  fragmentShader: [
+    'uniform sampler2D texture;',
+    'uniform vec3 color;',
+    'varying vec2 vUv;',
+    'void main(void)',
+    '{',
+    'vec3 tColor = texture2D( texture, vUv ).rgb;',
+    'float a = (length(tColor - color) - 0.5) * 7.0;',
+    'gl_FragColor = vec4(tColor, a);',
+    '}'
+  ].join('\n')
+});
+</script>
+</html>
