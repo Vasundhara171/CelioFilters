@@ -13,13 +13,16 @@
     <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <!--   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script> -->
   
-<script src="../assets/js/ar.js"></script>
+
  <link rel="stylesheet"  href="../assets/css/style.css">
+ <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-<body>
+<body style="margin:0px; overflow:hidden;">
   
-<a-scene photomode vr-mode-ui="enabled: false"  arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;'  >
+ 
+
+<a-scene embedded vr-mode-ui="enabled: false"  arjs='debugUIEnabled: false;detectionMode: mono_and_matrix; matrixCodeType: 3x3;'  >
 <a-assets>
   <a-asset-item id="logo"  src="../assets/model/TomAndJerryLogo.glb" ></a-asset-item>
 <a-asset-item id="demo1"  src="../assets/model/Jerry.glb" ></a-asset-item>
@@ -37,11 +40,19 @@
 </a-entity>
 </a-scene>
 
-<button id="btn" hidden> </button>
-  <a  href="../select.html"> <button id="retake"> 
+<div class="ui">
+  <img id="snap">
+  <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">Re</i></a>
+  <a href="" id="take-photo" title="Take Photo" ><i class="material-icons" >C</i></a>
+  <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">D</i></a>
+</div>
+
+<!-- <button id="btn" hidden> </button> -->
+  <!-- <a  href="../select.html"> <button id="retake"> 
       ReTake
-    </button></a> 
-     <h1 id="timer">10</h1>
+    </button></a>  -->
+     <h1 id="timer" style="display: none;">10</h1>
 
 </body>
+<script src="../assets/js/ar.js"></script>
 </html>

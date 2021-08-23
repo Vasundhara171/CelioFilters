@@ -1,81 +1,87 @@
-// AFRAME.registerComponent('photomode', {
-//     init: function ()
-// 	{
-// 		const container = document.getElementById('photoModeContainer')
-// 		const image = document.getElementById('photoModeImage')
-// 		const shutterButton = document.getElementById('shutterButton')
-// 		const closeButton = document.getElementById('closeButton')
-//         console.log( )
-// 		// Container starts hidden so it isn't visible when the page is still loading
-// 		container.style.display = 'block'
 
-// 		closeButton.addEventListener('click', () =>
-// 		{
-// 			container.classList.remove('photo')
-// 			setTimeout(() =>
-// 			{
-// 				// Tell the restart-camera script to stop watching for issues
-// 				window.dispatchEvent(new Event('ensurecameraend'))
-// 			}, 1000)
-// 		})
+   var i = 10;
 
-// 		shutterButton.addEventListener('click', () =>
-// 		{
-// 			// Emit a screenshotrequest to the xrweb component
-// 			this.el.sceneEl.emit('screenshotrequest')
+   var image = document.querySelector('#snap');
+    var take_photo_btn = document.querySelector('#take-photo');
+    var delete_photo_btn = document.querySelector('#delete-photo');
+    var download_photo_btn = document.querySelector('#download-photo');
+   
+    take_photo_btn.addEventListener("click", function (e) {
+        e.preventDefault();
+       
+    var downloadTimer = setInterval(function(){
+        if(i <= 0){
+            i=10
+          clearInterval(downloadTimer);
+         document.getElementsByTagName('h1')[0].style.display="none"
+              var video = document.querySelector('video');
+              var snap = takeSnapshot(video);
+            
+              image.setAttribute('src', snap);
+              image.classList.add('visible');
+              
+              delete_photo_btn.classList.remove("disabled");
+              download_photo_btn.classList.remove("disabled");
+            
+              download_photo_btn.href = snap;
+        } else {
+            document.getElementsByTagName('h1')[0].style.display = "block";
+            document.getElementsByTagName('h1')[0].innerHTML = i;
+        }
+        i -= 1;
+      }, 1000);
 
-// 			// Show the flash while the image is being taken
-// 			container.classList.add('flash')
-// 		})
+       
+    });
+   
+    delete_photo_btn.addEventListener("click", function(e){
+        e.preventDefault();
+      
+        image.setAttribute('src', "");
+        image.classList.remove("visible");
+     
+        delete_photo_btn.classList.add("disabled");
+        download_photo_btn.classList.add("disabled");
+    });
+   
 
-// 		this.el.sceneEl.addEventListener('screenshotready', e =>
-// 		{
-//             console.log(e)
-// 			// Hide the flash
-// 			container.classList.remove('flash')
+    function takeSnapshot(video) {
+        var resizedCanvas = document.createElement("canvas");
+        var resizedContext = resizedCanvas.getContext("2d");
+        var width = video.videoWidth;
+        var height = video.videoHeight;
+        var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+        if (width && height) {
+           
+            resizedCanvas.width = width;
+            resizedCanvas.height = height;
+           
+            resizedContext.drawImage(video, 0, 0, width, height);
+           
+            if (width > height) {
+           
+                resizedContext.drawImage(aScene, 0, 0, width, height);
+            } else {
+               
+                var scale = height / width;
+                var scaledWidth = height * scale;
+                var marginLeft = (width - scaledWidth) / 2;
+                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+            }
+            return resizedCanvas.toDataURL('image/png');
+        }
+    }
+  
+    
+      
+    //   setTimeout(()=>{
+    //   document.getElementById('retake').style.display="block"
+    //   },12000)
 
-// 			// If an error occurs while trying to take the screenshot, e.detail will be empty.
-// 			// We could either retry or return control to the user
-// 			if (!e.detail)
-// 			{
-// 				return
-// 			}
-
-// 			// e.detail is the base64 representation of the JPEG screenshot
-// 			image.src = 'data:image/jpeg;base64,' + e.detail
-
-// 			// Show the photo
-// 			container.classList.add('photo')
-
-// 			// Tell the restart-camera script to start watching for issues
-// 			window.dispatchEvent(new Event('ensurecamerastart'))
-// 		})
-// 	}
-//   });
 
 
-function ar() {
-  window.print()
-}
 
-var i = 10;
-function timer(){
-  if (--i < 0) 
-  {
-    document.getElementsByTagName('h1')[0].style.display="none"
-    //document.getElementsByTagName('retake')[0].style.display="none"
-     return ar();
-  }
 
-  setTimeout(function(){
-      document.getElementsByTagName('h1')[0].innerHTML = i;
-    timer()
-  }, 1000);
-}
-timer()
 
-setTimeout(()=>{
-document.getElementById('retake').style.display="block"
-},12000)
 
 

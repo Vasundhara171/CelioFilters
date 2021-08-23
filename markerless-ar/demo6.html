@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A-FrameAR</title>
+  <!-- A-Frame ライブラリの読み込み -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- AR.js ライブラリの読み込み -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- aframe-extras読み込み -->
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
+    <script src='https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js'></script>
+<script>
+    AFRAME.registerComponent('registerevents', {
+        init: function () {
+            var marker = this.el;
+            // マーカーを検出したイベントの登録
+            marker.addEventListener('markerFound', function () {var markerId = marker.id;
+                console.log('markerFound', markerId);
+                // アニメーションの開始
+                document.querySelector('#box').emit('markerfound');
+            });
+            // マーカーを見失ったイベントの登録
+            marker.addEventListener('markerLost', function () {
+                var markerId = marker.id;
+                console.log('markerLost', markerId);
+                // アニメーションの停止
+                document.querySelector('#box').emit('markerlost');
+            });
+        }
+    });
+</script>
+<!--写真撮る -->
+ <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .ui {
+            position: absolute;
+            z-index: 100;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 10px 15px 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .ui a {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: #ffffff;
+            line-height: 100%;
+            color: #303030;
+            margin: 10px 3px;
+            border-radius: 50%;
+            position: relative;
+        }
+        .ui a i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .ui a:active {
+            color: #ff0000;
+        }
+        #snap {
+            max-width: 100%;
+            height: auto;
+            display: block;;
+            visibility: hidden;
+        }
+        .ui a.disabled {
+            pointer-events: none;
+            color: #cccccc;
+        }
+        #snap.visible {
+            visibility: visible;
+        }
+    </style>　　
+</head>
+<body style="margin:0px; overflow:hidden;">
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded arjs="debugUIEnabled:false;trackingMethod: best;" vr-mode-ui="enabled: false">
+    <!-- マーカーを登録（プリセットされている「hiro」マーカー） -->
+   <!-- <a-marker preset="hiro">-->
+     <!-- 今回作成した『.patt』ファイルを読み込む -->
+<!--       <a-marker type='pattern' preset="hiro" registerevents> -->
+      <!-- マーカーの場所に箱を置く（見やすいようにワイヤーフレーム表示）  
+      <a-box color="tomato" depth="0.2" height="2" width="8" position="0 -5 0" roration="-30 0 0"></a-box> -->
+      <!--
+<a-entity 
+            obj-model="obj: url(/objects/qq.obj);
+        mtl: url(/objects/qq.mtl)"
+            scale="0.02 0.02 0.02"
+            rotation="0 0 0"
+        >
+        </a-entity>  -->
+<!--標準オブジェクト
+  球
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      円柱
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      平面
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+     -->
+      <a-entity 
+                gltf-model="url(/objects/PSM4.gltf)" 
+                position="0 0 0" 
+                rotation="-50 0 0" 
+                scale="0.2 0.2 0.2"
+                animation-mixer="clip:*"
+                >
+            </a-entity>
+                <a-entity 
+                gltf-model="url(/objects/walka.gltf)" 
+                position="-2.3 0 0" 
+                rotation="-50 20 0" 
+                scale="0.005 0.005 0.005"
+                animation-mixer="clip:*"
+                >
+            </a-entity>
+                 <a-entity 
+                gltf-model="url(/objects/SwordB.gltf)" 
+                position="2.5 0 0" 
+                rotation="-50 20 0" 
+                scale="0.015 0.015 0.015"
+                animation-mixer="clip:*"
+                >
+            </a-entity>
+                <a-entity 
+                gltf-model-next="src:url(/objects/walka.gltf)" 
+                position="-2.3 0 0" 
+                rotation="-50 20 0" 
+                scale="0.005 0.005 0.005"
+                animation-mixer="clip:*"
+                >
+            </a-entity> 
+<!-- 
+            <a-plane position="0 -0.2 0" rotation="-90 0 0" width="2" height="0.2" color="#7BC8A4"></a-plane> -->
+            <a-box
+        position="0 0 -2"
+        rotation="0 45 0"
+        material="color: #ff1561"
+        animation="property: rotation; from: 0 0 0; to: 360 360 0; loop: true; dur: 3000; easing: linear"
+        animation__2="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1000; loop: true; dir: alternate"
+      ></a-box>
+<a-entity id="rain" particle-system="preset: rain; color: #24CAFF; particleCount: 5000"></a-entity>
+ <a-entity fbx-model="src: url(/objects/modeling6.fbx);" position="-2.3 0 0" 
+                rotation="-50 20 0" 
+                scale="0.005 0.005 0.005" crossorigin="anonymous">
+      </a-entity>
+<!--     </a-marker> -->
+    <!-- AR用のカメラを置く -->
+    <a-entity camera></a-entity>
+  </a-scene>
+<div class="ui">
+    <img id="snap">
+    <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+    <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
+    <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
+</div>
+</body>
+<script>
+    var image = document.querySelector('#snap');
+    var take_photo_btn = document.querySelector('#take-photo');
+    var delete_photo_btn = document.querySelector('#delete-photo');
+    var download_photo_btn = document.querySelector('#download-photo');
+    //スナップショットボタン
+    take_photo_btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var video = document.querySelector('video');
+        var snap = takeSnapshot(video);
+        //スナップショット表示.
+        image.setAttribute('src', snap);
+        image.classList.add('visible');
+        // 削除ボタンと保存ボタン有効
+        delete_photo_btn.classList.remove("disabled");
+        download_photo_btn.classList.remove("disabled");
+        // 保存ボタンにスナップショットを渡す
+        download_photo_btn.href = snap;
+    });
+    //削除ボタン
+    delete_photo_btn.addEventListener("click", function(e){
+        e.preventDefault();
+        // スナップショットを隠す
+        image.setAttribute('src', "");
+        image.classList.remove("visible");
+        // 削除ボタンと保存ボタン無効
+        delete_photo_btn.classList.add("disabled");
+        download_photo_btn.classList.add("disabled");
+    });
+    //スナップショットを撮る
+    function takeSnapshot(video) {
+        var resizedCanvas = document.createElement("canvas");
+        var resizedContext = resizedCanvas.getContext("2d");
+        var width = video.videoWidth;
+        var height = video.videoHeight;
+        var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+        if (width && height) {
+            //videoのサイズをキャンバスにセット
+            resizedCanvas.width = width;
+            resizedCanvas.height = height;
+            //キャンバスにvideoをコピー
+            resizedContext.drawImage(video, 0, 0, width, height);
+            //カメラの画角でar側の縮小処理を変える
+            if (width > height) {
+                // 横長（PC)
+                resizedContext.drawImage(aScene, 0, 0, width, height);
+            } else {
+                // 縦長（スマホ）
+                var scale = height / width;
+                var scaledWidth = height * scale;
+                var marginLeft = (width - scaledWidth) / 2;
+                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+            }
+            return resizedCanvas.toDataURL('image/png');
+        }
+    }
+    </script>
+</html>
